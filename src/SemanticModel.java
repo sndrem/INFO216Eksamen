@@ -3,6 +3,7 @@ import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.ontology.OntProperty;
+import com.hp.hpl.jena.query.Dataset;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -10,9 +11,11 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.InfModel;
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.tdb.TDBFactory;
 import com.hp.hpl.jena.update.UpdateAction;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDFS;
@@ -34,6 +37,10 @@ public class SemanticModel {
 		 // We declare it as an ontmodel so we can work with classes
 		 // The OntModelSpec.OWL_DL_MEM_RULE_INF tells the modelFactory what type of reasoning we want
 		 OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
+		 // We would also like to store our data somewhere safe, such as a dataset...
+		 Dataset ds = TDBFactory.createDataset("developerData");
+		 Model model = ds.getDefaultModel();
+		 ontModel.add(model);
 		 
 		 // Add some developers to our model
 		 // The developers all have some properties
@@ -168,5 +175,6 @@ public class SemanticModel {
 		 // Print out the model. To be able to print it we have to get the 
 		 // base model of our ontology model.
 		 ontModel.getBaseModel().write(System.out, "TURTLE");
+		 
 	 }
 }
