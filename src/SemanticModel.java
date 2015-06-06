@@ -96,7 +96,7 @@ public class SemanticModel {
 		 // One day, a super hot girl walked in to the firm and was offered a job. Our newly employed developer Sigve said it was his wife. 
 		 // There was just one catch, the model could not confirm that they were married. Why not?
 		 
-		 Individual sigve = developerClass.createIndividual(base + "SigveSolaat");
+		 Individual sigve = developerClass.createIndividual(base + "SigveSolvaag");
 		 sigve.addProperty(worksFor, firmClass);
 		 sigve.addProperty(devLanguage, "Pascal");
 		 sigve.addProperty(workStation, "Linux");
