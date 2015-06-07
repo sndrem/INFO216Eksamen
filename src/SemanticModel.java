@@ -153,6 +153,7 @@ public class SemanticModel {
 		 		+ "dev:worksFor dev:Firm; "
 		 		+ "dev:developerLanguage 'Javascript & HTML5' . }";
 		 UpdateAction.parseExecute(insertString, infModel);
+	
 		 
 		 // One day, a person walked into the firm. The boss thought something was very familiar and indeed, the person had been working at the firm earlier
 		 // The boss, an avid semantic entuisast knew they had a record on him earlier. His data looked like this
@@ -211,10 +212,28 @@ public class SemanticModel {
 			e.printStackTrace();
 		}
 		 
+		 // We can print out all the classes that a individual belongs to
+		 // Note that Kjetil is part of both InternDeveloper and Developer
+		 // That is because InternDeveloper is a subclass of Developer.
+		 System.out.println("Kjetil is part of these classes...");
+		 for(OntClass cls : kjetil.listOntClasses(false).toList()) {
+			 System.out.println(cls.toString());
+		 }
+		 System.out.println();
+		 
+		 // Sindre on the other hand, is not part of InternDeveloper
+		 System.out.println("Sindre is part of these classes...");
+		 for(OntClass cls : sindreInd.listOntClasses(false).toList()) {
+			 System.out.println(cls.toString());
+		 }
+		 System.out.println();
+		 
 		 // Print out the model. To be able to print it we have to get the 
 		 // base model of our ontology model.
-		 ontModel.getBaseModel().write(System.out, "TURTLE");
+//		 ontModel.getBaseModel().write(System.out, "TURTLE");
+		 ontModel.write(System.out, "TURTLE");
 		 model.close();
+		 ontModel.close();
 		 ds.close();
 		 
 	 }

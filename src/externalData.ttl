@@ -1,0 +1,6 @@
+@prefix dev: <http://ourOntology.com/>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+dev:Are a dev:InternDeveloper;
+	dev:developerLanguage "Java";
+	dev:workStation "Windows" . 
