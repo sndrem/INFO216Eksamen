@@ -1,7 +1,0 @@
-<http://sinoa.infomedia.uib.no/info216#Product1> <http://sinoa.infomedia.uib.no/info216#productReleaseDate> "2015-01-01"^^<http://www.w3.org/2001/XMLSchema#date> .
-<http://sinoa.infomedia.uib.no/info216#Product1> <http://sinoa.infomedia.uib.no/info216#productIsReleased> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<http://sinoa.infomedia.uib.no/info216#Product1> <http://www.w3.org/2000/01/rdf-schema#label> "The great product"^^<http://www.w3.org/2001/XMLSchema#string> .
-<http://sinoa.infomedia.uib.no/info216#Product1> <http://sinoa.infomedia.uib.no/info216#productName> "Det bra produktet"@no .
-<http://sinoa.infomedia.uib.no/info216#Product1> <http://sinoa.infomedia.uib.no/info216#productName> "The great product"@en .
-<http://sinoa.infomedia.uib.no/info216#Product1> <http://sinoa.infomedia.uib.no/info216#productName> "The great product" .
-<http://sinoa.infomedia.uib.no/info216#Product1> <http://sinoa.infomedia.uib.no/info216#productID> "1"^^<http://www.w3.org/2001/XMLSchema#int> .

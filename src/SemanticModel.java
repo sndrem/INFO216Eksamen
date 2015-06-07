@@ -1,3 +1,7 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -15,6 +19,8 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.tdb.TDBFactory;
 import com.hp.hpl.jena.update.UpdateAction;
 import com.hp.hpl.jena.vocabulary.OWL;
@@ -41,6 +47,7 @@ public class SemanticModel {
 		 Dataset ds = TDBFactory.createDataset("developerData");
 		 Model model = ds.getDefaultModel();
 		 ontModel.add(model);
+		 model.begin();
 		 
 		 // Add some developers to our model
 		 // The developers all have some properties
@@ -107,6 +114,9 @@ public class SemanticModel {
 		 sigve.addProperty(worksFor, firmClass);
 		 sigve.addProperty(devLanguage, "Pascal");
 		 sigve.addProperty(workStation, "Linux");
+		 sigve.addProperty(FOAF.knows, kjetil);
+		 kjetil.addProperty(FOAF.knows, sigve);
+		 
 		 
 		 Individual hotGirl = internDeveloper.createIndividual(base + "MeganFox");
 		 hotGirl.addProperty(VCARD.FN, "Megan Fox");
@@ -133,6 +143,16 @@ public class SemanticModel {
 		 		+ "dev:Alexander a dev:Developer; "
 		 		+ "dev:workStation 'Windows Surface'; "
 		 		+ "dev:developerLanguage 'Java' . }", infModel);
+		 
+		 // lets insert one more developer
+		 String insertString = ""
+		 		+ "PREFIX dev: <http://ourOntology.com/> "
+		 		+ ""
+		 		+ "INSERT DATA { "
+		 		+ "dev:Espen a dev:InternDeveloper; "
+		 		+ "dev:worksFor dev:Firm; "
+		 		+ "dev:developerLanguage 'Javascript & HTML5' . }";
+		 UpdateAction.parseExecute(insertString, infModel);
 		 
 		 // One day, a person walked into the firm. The boss thought something was very familiar and indeed, the person had been working at the firm earlier
 		 // The boss, an avid semantic entuisast knew they had a record on him earlier. His data looked like this
@@ -168,13 +188,34 @@ public class SemanticModel {
 		 //Just for line break in the console
 		 System.out.println();
 		 
+		 Statement statement = ontModel.createStatement(oldDeveloper, devLanguage, "Java, CSS & HTML");
+		 ontModel.add(statement);
+		 
 		 
 		 // Set prefixes when printing model
 		 ontModel.setNsPrefix("dev", base);
 		 
+		 // Lets create file with out triples in the turtle format
+		 try {
+			ontModel.getBaseModel().write(new FileOutputStream("developers.ttl"), "TURTLE");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 // Lets also read some external data we had from a file
+		 try {
+			ontModel.getBaseModel().read(new FileInputStream("externalData.ttl"),null, "TURTLE");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
 		 // Print out the model. To be able to print it we have to get the 
 		 // base model of our ontology model.
 		 ontModel.getBaseModel().write(System.out, "TURTLE");
+		 model.close();
+		 ds.close();
 		 
 	 }
 }

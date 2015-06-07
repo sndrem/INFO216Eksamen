@@ -1,0 +1,71 @@
+@prefix dev:   <http://ourOntology.com/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+dev:KjetilJVillanger  a        dev:InternDeveloper ;
+        dev:developerLanguage  "C#" ;
+        dev:workStation        "Mac and Windows" ;
+        dev:worksFor           dev:Firm ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#FN>
+                "Kjetil Jacobsen Villanger" ;
+        <http://xmlns.com/foaf/0.1/knows>
+                dev:SigveSolvaag .
+
+dev:SigveSolvaag  a            dev:Developer ;
+        dev:developerLanguage  "Pascal" ;
+        dev:marriedTo          dev:MeganFox ;
+        dev:workStation        "Linux" ;
+        dev:worksFor           dev:Firm ;
+        <http://xmlns.com/foaf/0.1/knows>
+                dev:KjetilJVillanger .
+
+dev:MeganFox  a                dev:InternDeveloper ;
+        dev:developerLanguage  "Javascript" ;
+        dev:workStation        "Windows and Linux" ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#FN>
+                "Megan Fox" .
+
+dev:InternDeveloper  a   owl:Class ;
+        rdfs:subClassOf  dev:Developer .
+
+dev:EinarJohansen  a           dev:Developer ;
+        dev:developerLanguage  "Java" ;
+        dev:workStation        "Windows" ;
+        dev:worksFor           dev:Firm .
+
+dev:RetiredDeveloper  dev:developerLanguage
+                "Java, CSS & HTML" ;
+        dev:isRetired          true ;
+        owl:sameAs             dev:NewDeveloper .
+
+dev:Alexander  a               dev:Developer ;
+        dev:developerLanguage  "Java" ;
+        dev:workStation        "Windows Surface" .
+
+dev:Espen  a                   dev:InternDeveloper ;
+        dev:developerLanguage  "Javascript & HTML5" ;
+        dev:worksFor           dev:Firm .
+
+dev:Developer  a  owl:Class .
+
+dev:SindreMoldeklev  a         dev:Developer ;
+        dev:developerLanguage  "Java" ;
+        dev:workStation        "Mac" ;
+        dev:worksFor           dev:Firm .
+
+dev:NewDeveloper  a  dev:Developer ;
+        <http://www.w3.org/2001/vcard-rdf/3.0#FN>
+                "New Developer" .
+
+dev:marriedTo  a  owl:SymmetricProperty , rdf:Property .
+
+dev:HaakonRoald  a             dev:Developer ;
+        dev:developerLanguage  "HTML / CSS" ;
+        dev:workStation        "Windows" ;
+        dev:worksFor           dev:Firm .
+
+dev:Firm  a           owl:Class ;
+        rdfs:comment  "This class represents the firm where developers work" ;
+        rdfs:label    "The most awesome firm in history" .
