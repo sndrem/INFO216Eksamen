@@ -1,0 +1,28 @@
+@prefix : <http://ontology.com/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Food a owl:Class .
+:Person a owl:Class .
+:eats rdfs:domain :Person .
+:eats rdfs:range :Food .
+
+:Maverick :eats :Steak,
+				:Marzipan .
+
+:Vegetarian a owl:Class;
+		rdfs:subClassOf :Person .
+
+:VegetarianFood a owl:Class;
+		rdfs:subClassOf :Food .
+
+:Jen a :Vegetarian;
+	:eats :Marzipan .
+
+:Vegetarian rdfs:subClassOf [a owl:Restriction ;
+							owl:onProperty :eats;
+							owl:allValuesFrom :VegetarianFood ] .
+
+
