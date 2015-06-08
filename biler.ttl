@@ -1,0 +1,34 @@
+@prefix bil: <http://biler.com/>
+@prefix boat: <http://boat.com/>
+@prefix : <http://example.com/>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+bil:Volvo 	bil:reg 	"ST4040";
+			bil:farge 	"Rød";	
+			bil:modell	"XC90";
+			a bil:Bil .
+
+bil:BMW 	bil:seter 	"4";
+			bil:modell	"I3";
+			a bil:Bil .
+
+bil:Mercury a boat:Engine;
+	boat:hk 	"115";
+	boat:fuelType	"Bensin";
+	boat:owner 	:Sindre .
+
+
+
+:Shakespeare :hasChildren _:blankNode .
+_:blankNode rdf:List (:Judith :Elisabeth :Hamlet ) .
+
+
+:Sindre bil:owns bil:Volvo .
+
+bil:Bil a owl:Class .
+
+bil:owns rdfs:domain :Person;
+		rdfs:range bil:Bil .
+

@@ -21,6 +21,9 @@ dev:SigveSolvaag  a            dev:Developer ;
         <http://xmlns.com/foaf/0.1/knows>
                 dev:KjetilJVillanger .
 
+dev:developerName  a        rdf:Property ;
+        rdfs:subPropertyOf  rdfs:label .
+
 dev:MeganFox  a                dev:InternDeveloper ;
         dev:developerLanguage  "Javascript" ;
         dev:workStation        "Windows and Linux" ;

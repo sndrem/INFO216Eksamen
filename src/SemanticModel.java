@@ -123,6 +123,10 @@ public class SemanticModel {
 		 hotGirl.addProperty(devLanguage, "Javascript");
 		 hotGirl.addProperty(workStation, "Windows and Linux");
 		 
+		 OntProperty developerName = ontModel.createOntProperty(base + "developerName");
+		 developerName.addProperty(RDFS.subPropertyOf, RDFS.label);
+		 
+		 
 		 // Now we create the marriedTo property. Note that if we just create the property, then it will say that Sigve is married to hotGirl, but not vice versa. 
 		 // We have to make marriedTo a symmetric property. Try commenting on and off the convertTo-method while running the program to see what the question below prints out.
 		 OntProperty marriedTo = ontModel.createOntProperty(base + "marriedTo");
